@@ -8,8 +8,6 @@
         //    $Requestmodel= Mage::getModel("core/request"); 
         //    echo(get_class($Requestmodel));
         Mage::getModel("core/request"); 
-       
-
         }
         public static function getModel($ModelName)
         {
@@ -18,5 +16,31 @@
             $dif = ucfirst($arr[0])."_Model_".ucfirst($arr[1]);
             echo $dif;
         }
+        public static function init()
+        {
+
+        }
+        public static function getSingleton($className)
+        {
+            
+        }
+        public static function getModel($className)
+        {
+
+        }
+        public static function register($key, $value)
+        {
+
+        }
+        public static function registry($key)
+        {
+
+        }
+        public static function getBaseDir($subDir = null)
+        {
+            
+        }
+
+
     }
 ?>
