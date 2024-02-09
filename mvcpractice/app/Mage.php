@@ -16,18 +16,12 @@
             $dif = ucfirst($arr[0])."_Model_".ucfirst($arr[1]);
             echo $dif;
         }
-        public static function init()
-        {
-
-        }
+        
         public static function getSingleton($className)
         {
             
         }
-        public static function getModel($className)
-        {
-
-        }
+       
         public static function register($key, $value)
         {
 
