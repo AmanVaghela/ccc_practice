@@ -1,0 +1,10 @@
+<h1>content.phtml</h1>
+<?php
+echo "<pre>";
+$product_model= Mage::getModel("product/product")->load(1);
+print_r($product_model->getId());
+print_r($product_model->getProName());
+print_r($product_model->getIdProCategory());
+print_r($product_model);
+echo "</pre>";
+?>
