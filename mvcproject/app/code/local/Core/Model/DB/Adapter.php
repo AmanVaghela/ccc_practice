@@ -56,7 +56,15 @@
         }
         public function update($query)
         {
-
+            if(mysqli_query($this->connect(), $query))
+            {
+             //return mysqli_delete_id($this->connect);
+             return true;
+            }
+            else
+            {
+             return false;
+            }
         }
         public function delete($query)
         {

@@ -26,7 +26,9 @@ class Core_Model_Abstract
     }
     public function setId($id)
     {
-        return $this->_data[$this->getResource()->getPrimaryKey()]=$id;
+        return isset($this->_data[$this->getResource()->getPrimaryKey()])
+        ? $this->_data[$this->getResource()->getPrimaryKey()]
+        :false ;
     }
     public function getId()
     {

@@ -17,3 +17,12 @@
         }
     }
 ?>
+<!-- public function deleteAction()
+     {
+      //echo "catalog controller product delete";
+      
+      $productModel = Mage::getModel('catalog/product')->load($this->getRequest()->getParams('id',0));
+      $productModel->delete();
+
+      // header('Location: list');
+     } -->

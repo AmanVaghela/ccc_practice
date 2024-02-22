@@ -38,28 +38,46 @@ class Catalog_Model_Resource_Product
         $data = $product->getData();
         //print_r($data);
 
-        if (isset($data[$this->getPrimaryKey()])) {
+        if (isset($data[$this->getPrimaryKey()]))
+         {
             unset($data[$this->getPrimaryKey()]);
-        }
+            $sql=$this->updateSql($this->getTableName(), $data,[$this->getPrimaryKey()=>$product->getId()]);
+         }
+         else
+         {
+           $sql=$this->insertSql($this->getTableName(), $data);
+           $id = $this->getAdapter()->insert($sql);
+           ($product->setId($id));
+         }
 
-        $insertData = $this->insertSql($this->getTableName(), $data);
-        // var_dump($data);
-        echo $insertData;
-        $id = $this->getAdapter()->insert($insertData);
-        ($product->setId($id));
+        // $insertData = $this->insertSql($this->getTableName(), $data);
+        // // var_dump($data);
+        // echo $insertData;
+        // $id = $this->getAdapter()->insert($insertData);
+        // ($product->setId($id));
     }
 
-    public function delete($id)
+    public function delete(Catalog_Model_Product $product)
     {
 
         //print_r($data);
-        $deleteData = $this->deleteSql($this->getTableName(), [$this->_primaryKey => "$id"]);
+        $deleteData = $this->deleteSql($this->getTableName(), [$this->getPrimaryKey()->$product->getId()]);
         // var_dump($data);
         echo $deleteData;
         $id = $this->getAdapter()->delete($deleteData);
         // ($product->setId($id));
     }
 
+    // public function delete($id)
+    // {
+
+    //     //print_r($data);
+    //     $deleteData = $this->deleteSql($this->getTableName(), [$this->_primaryKey => "$id"]);
+    //     // var_dump($data);
+    //     echo $deleteData;
+    //     $id = $this->getAdapter()->delete($deleteData);
+    //     // ($product->setId($id));
+    // }
     public function insertSql($table, $data)
     {
 

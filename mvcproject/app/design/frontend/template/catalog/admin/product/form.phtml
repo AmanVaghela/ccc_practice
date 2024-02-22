@@ -1,3 +1,7 @@
+<?php
+ $product_model = $this->getProduct();
+//  print_r($product_model);
+?>
 <html>
 	<head>
 		<title>
@@ -9,15 +13,15 @@
 		  <fieldset>
 			<legend>Product information:</legend>
 			<label for="pname">Product Name:</label>
-			<input type="text" id="pname" name="pdata[productName]" placeholder="enter product name" required ><br><br>
+			<input type="text" id="pname" name="pdata[productName]" value="<?php echo $product_model->getId()?>" placeholder="enter product name" required ><br><br>
 			<label for="sku">SKU:</label>
-			<input type="text" id="sku" name="pdata[sku]" placeholder="enter stock keeping unit"required ><br><br>
+			<input type="text" id="sku" name="pdata[sku]" value="<?php echo $product_model->getsku()?>" placeholder="enter stock keeping unit"required ><br><br>
 			<label for="ptype">Product Type:</label>
 			<input type="radio" id="ptype" name="pdata[productType]" value="simple">Simple</input>
 			<input type="radio" id="ptype" name="pdata[productType]" value="bundle">Bundle</input>
 			<br><br>
 			<label for="category">Category:</label>
-				<select id="category" name="pdata[category]" >
+				<select id="category" name="pdata[category]" value="<?php echo $product_model->getcategory()?>">
 				<option value="select">--Select--</option>
 					<option value="Bar & GameRoom">Bar & Game Room</option>
 					<option value="Bedroom">Bedroom</option>
@@ -30,23 +34,23 @@
                     <option value="Outdoor">Outdoor</option>
 				</select><br/><br/>
             <label for="manufactcost">Manufacturer Cost:</label>
-			<input type="text" id="manufactcost" name="pdata[manufacturerCost]" placeholder="enter manufacturer cost" required ><br><br>
+			<input type="text" id="manufactcost" name="pdata[manufacturerCost]" value="<?php echo $product_model->getmanufacturerCost()?>" placeholder="enter manufacturer cost" required ><br><br>
             <label for="shipcost">Shipping Cost:</label>
-			<input type="text" id="shipcost" name="pdata[shippingCost]" placeholder="enter shipping cost" required ><br><br>
+			<input type="text" id="shipcost" name="pdata[shippingCost]" value="<?php echo $product_model->getshippingCost()?>" placeholder="enter shipping cost" required ><br><br>
             <label for="totalcost">Total Cost:</label>
-			<input type="text" id="totalcost" name="pdata[totalCost]" placeholder="enter total cost" required ><br><br>
+			<input type="text" id="totalcost" name="pdata[totalCost]" value="<?php echo $product_model->gettotalCost()?>" placeholder="enter total cost" required ><br><br>
             <label for="price">Price:</label>
-			<input type="text" id="price" name="pdata[price]" placeholder="enter price" required ><br><br>
+			<input type="text" id="price" name="pdata[price]" placeholder="enter price" value="<?php echo $product_model->getprice()?>" required ><br><br>
 			<label for="status">Status:</label>
-				<select id="status" name="pdata[status]" >
+				<select id="status" name="pdata[status]" value="<?php echo $product_model->getstatus()?>">
 				<option value="select">--Select--</option>
 					<option value=" Enabled" > Enabled</option>
 					<option value="Disabled">Disabled</option>
 				</select><br/><br/>	
             <label for="createddate">Created At:</label>
-			<input type="date" id="createddate" name="pdata[createdAt]"><br><br>
+			<input type="date" id="createddate" name="pdata[createdAt]" value="<?php echo $product_model->getcreatrdAt()?>"><br><br>
             <label for="updateddate">Updated At:</label>
-            <input type="date" id="updateddate" name="pdata[updatedAt]"><br><br>
+            <input type="date" id="updateddate" name="pdata[updatedAt]" value="<?php echo $product_model->getupdatedAt()?>"><br><br>
 			<input type="submit" name="submit" value="submit" />
 		
 		  </fieldset>

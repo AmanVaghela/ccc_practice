@@ -26,7 +26,8 @@
            
         }
 
-        public function getParams($key = '') {
+        public function getParams($key = '',$arg=null) 
+        {
             return ($key == '')
                 ? $_REQUEST
                 : (isset($_REQUEST[$key])
@@ -35,12 +36,12 @@
                 );
         }
 
-        public function getPostData($key = '') {
+        public function getPostData($key = '',$arg = null) {
             return ($key == '')
-                ? $_POST
-                : (isset($_POST[$key])
-                    ? $_POST[$key]
-                    : ''
+                ? $_REQUEST
+                : (isset($_REQUEST[$key])
+                    ? $_REQUEST[$key]
+                    : ((!is_null ($arg))? $arg:'')
                 );
         }
 

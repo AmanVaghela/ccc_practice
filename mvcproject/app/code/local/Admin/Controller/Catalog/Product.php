@@ -19,11 +19,10 @@
 
      public function deleteAction()
      {
-      echo "catalog controller product delete";
-      $id = $this->getRequest()->getParams('pid');
-      print_r($id);
-      $productModel = Mage::getModel('catalog/product');
-      $productModel->delete($id);
+      //echo "catalog controller product delete";
+      
+      $productModel = Mage::getModel('catalog/product')->load($this->getRequest()->getParams('id',0));
+      $productModel->delete();
 
       // header('Location: list');
      }
