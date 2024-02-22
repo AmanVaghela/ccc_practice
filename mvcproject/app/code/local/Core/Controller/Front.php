@@ -3,6 +3,7 @@
     {
         public function init()
         {
+            
             $request = new Core_Model_Request();
             $actionName = $request->getActionName().'Action';
             //echo $actionName;

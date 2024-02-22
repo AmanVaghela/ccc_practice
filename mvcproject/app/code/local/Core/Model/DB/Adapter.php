@@ -45,7 +45,14 @@
         }
         public function insert($query)
         {
-
+           if(mysqli_query($this->connect(), $query))
+           {
+            return mysqli_insert_id($this->connect);
+           }
+           else
+           {
+            return false;
+           }
         }
         public function update($query)
         {
@@ -53,7 +60,15 @@
         }
         public function delete($query)
         {
-
+            if(mysqli_query($this->connect(), $query))
+            {
+             //return mysqli_delete_id($this->connect);
+             return true;
+            }
+            else
+            {
+             return false;
+            }
         }
         public function query($query)
         {

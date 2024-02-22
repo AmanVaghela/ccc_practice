@@ -28,7 +28,7 @@
 
         public function addData($key, $value)
         {
-
+          
         }
 
         public function getData($key=null)
@@ -38,13 +38,14 @@
 
         public function setData($data)
         {
-
+        //    $this->_data=$data;
+        //    return$this;
         }
 
-        public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
-        {
+        // public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
+        // {
 
-        }
+        // }
 
         public function getRequest()
         {

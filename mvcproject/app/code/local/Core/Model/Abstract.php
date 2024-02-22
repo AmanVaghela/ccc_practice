@@ -26,7 +26,7 @@ class Core_Model_Abstract
     }
     public function setId($id)
     {
-        
+        return $this->_data[$this->getResource()->getPrimaryKey()]=$id;
     }
     public function getId()
     {
@@ -73,11 +73,17 @@ class Core_Model_Abstract
     }
     public function getData($key=null)
     {
-        
+
+        // $this->_data;
+        // print_r($this->_data);
+        // return $this;
+        return $this->_data;
+    
     }
     public function setData($data)
     {
-        
+        $this->_data = $data;
+        return $this;
     }
     public function addData($key, $value)
     {
@@ -89,16 +95,22 @@ class Core_Model_Abstract
     }
     public function save()
     {
-        
+        //echo "45654";
+        //print_r($this->getdata());
+        $this->getResource()->save($this);
+        return $this;
     }
     public function load($id, $column=null)
     {
         $this->_data = $this->getResource()->load($id, $column);
         return $this;
     }
-    public function delete()
+    public function delete($id)
     {
-        
+        echo "delete";
+        $this->getResource()->delete($id);
+       return $this;
+    
     }
 
 

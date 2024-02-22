@@ -9,6 +9,9 @@
 
         public function prepareChildren()
         {
+            $head = $this->createBlock('page/head');
+            $this->addChild('head',$head);
+            
             $header = $this->createBlock('page/header');
             // page_Block_header
             $this->addChild('header',$header);
@@ -19,8 +22,6 @@
             $content = $this->createBlock('page/content');
             $this->addChild('content',$content);
             
-            $head = $this->createBlock('page/head');
-            $this->addChild('head',$head);
             //page_Block_header
         }
 

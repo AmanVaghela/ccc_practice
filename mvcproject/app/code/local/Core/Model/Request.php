@@ -6,15 +6,18 @@
         protected $_actionName;
         public function __construct(){
             $uri = $this->getRequestUri();
-            if(strpos($uri ,'?'))
-            {
-                $pos=strpos($uri ,'?');
-                $temp_uri = substr($uri ,$pos);
-                //echo $temp_uri;
-                $uri  = str_replace($temp_uri, "", $uri);
-                //echo $uri;
-            }
-            $uri = array_filter(explode("/", $uri));
+            // if(strpos($uri ,'?'))
+            // {
+            //     $pos=strpos($uri ,'?');
+            //     $temp_uri = substr($uri ,$pos);
+            //     //echo $temp_uri;
+            //     $uri  = str_replace($temp_uri, "", $uri);
+            //     //echo $uri;
+            // }
+            $uri = explode("?", $uri);
+            // print_r($uri);
+            $uri = array_filter(explode("/", $uri[0]));
+            // print_r($uri);
 
             $this->_moduleName = isset($uri[0]) ? $uri[0] :'page';
             $this->_controllerName = isset($uri[1]) ? $uri[1] :'index';
@@ -83,6 +86,11 @@
             $strClass = $this->_moduleName . "_Controller_" . $this->_controllerName;
             $strClass = ucwords($strClass,'_');
             return $strClass;
+        }
+
+        public function getUrl($path)
+        {
+        return "http://localhost/Cybercom_PHP/mvcproject/".$path;
         }
     }
 ?>
