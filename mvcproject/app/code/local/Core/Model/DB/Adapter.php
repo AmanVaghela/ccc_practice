@@ -23,7 +23,13 @@
     }
         public function fetchAll($query)
         {
-
+            $row = [];
+            $sql = mysqli_query($this->connect(),$query);
+            while($_row = mysqli_fetch_assoc($sql))
+            {
+                $row[] =$_row;
+            }
+            return $row;
         }
         public function fetchPairs($query)
         {
@@ -45,9 +51,14 @@
         }
         public function insert($query)
         {
+           
+            echo $query;
+
+
            if(mysqli_query($this->connect(), $query))
            {
-            return mysqli_insert_id($this->connect);
+            return true;
+            // return mysqli_insert_id($this->connect);
            }
            else
            {

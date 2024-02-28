@@ -14,7 +14,20 @@
             $child->addChild('banner',$banner);
             //print_r($layout);
 
+          
             $layout->toHtml();
         }
+        public function testAction()
+        {
+            echo "<pre>";
+            $productModel= Mage:: getSingleton('core/session');
+           // ->set(['customerid',1]);
+            print_r($_SESSION);
+            // print_r($productModel);
+            // $productModel= Mage:: getSingleton('catalog/product')->setData(['adf','bfdg']);
+            // print_r($productModel);
+            die;
+        }
+
     }
 ?>

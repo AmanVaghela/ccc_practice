@@ -26,13 +26,14 @@ class Core_Model_Abstract
     }
     public function setId($id)
     {
-        return isset($this->_data[$this->getResource()->getPrimaryKey()])
-        ? $this->_data[$this->getResource()->getPrimaryKey()]
-        :false ;
+        $this->_data[$this->getResource()->getPrimaryKey()] =$id ;
+        return $this;
     }
     public function getId()
     {
-        return $this->_data[$this->getResource()->getPrimaryKey()];
+        return isset($this->_data[$this->getResource()->getPrimaryKey()])
+        ? $this->_data[$this->getResource()->getPrimaryKey()]
+        :false ;
     }
     public function getResource()
     {
@@ -40,7 +41,10 @@ class Core_Model_Abstract
     }
     public function getCollection()
     {
-        
+        $collection = new $this->collectionClass();
+        $collection->setResource($this->getResource());
+        $collection->select();
+        return $collection;
     }
     
     public function __set($key, $value)
@@ -99,18 +103,28 @@ class Core_Model_Abstract
     {
         //echo "45654";
         //print_r($this->getdata());
+        // $this->_beforeSave();
         $this->getResource()->save($this);
+        // $this->_afterSave();
         return $this;
+    }
+    public function _beforeSave()
+    {
+
+    }
+    public function _afterSave()
+    {
+
     }
     public function load($id, $column=null)
     {
         $this->_data = $this->getResource()->load($id, $column);
         return $this;
     }
-    public function delete($id)
+    public function delete()
     {
-        echo "delete";
-        $this->getResource()->delete($id);
+        //echo "delete";
+        $this->getResource()->delete($this);
        return $this;
     
     }

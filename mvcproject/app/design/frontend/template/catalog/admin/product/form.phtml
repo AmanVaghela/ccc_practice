@@ -1,59 +1,62 @@
 <?php
- $product_model = $this->getProduct();
-//  print_r($product_model);
+// Mage::getSingleton('core/session')->remove('customerId');
+  $productModel = $this->getProduct();
 ?>
-<html>
-	<head>
-		<title>
-			Forms Example
-		</title>
-	</head>
-	<body>
-		<form  action="<?php echo $this->getUrl('admin/catalog_product/save')?>"method="post">
-		  <fieldset>
-			<legend>Product information:</legend>
-			<label for="pname">Product Name:</label>
-			<input type="text" id="pname" name="pdata[productName]" value="<?php echo $product_model->getId()?>" placeholder="enter product name" required ><br><br>
-			<label for="sku">SKU:</label>
-			<input type="text" id="sku" name="pdata[sku]" value="<?php echo $product_model->getsku()?>" placeholder="enter stock keeping unit"required ><br><br>
-			<label for="ptype">Product Type:</label>
-			<input type="radio" id="ptype" name="pdata[productType]" value="simple">Simple</input>
-			<input type="radio" id="ptype" name="pdata[productType]" value="bundle">Bundle</input>
-			<br><br>
-			<label for="category">Category:</label>
-				<select id="category" name="pdata[category]" value="<?php echo $product_model->getcategory()?>">
-				<option value="select">--Select--</option>
-					<option value="Bar & GameRoom">Bar & Game Room</option>
-					<option value="Bedroom">Bedroom</option>
-					<option value="Decor">Decor</option>
-					<option value="Dining & Kitchen">Dining & Kitchen</option>	
-                    <option value="Lighting">Lighting</option>
-                    <option value="Living Room">Living Room</option>
-                    <option value="Mattresses">Mattresses</option>
-                    <option value="Office">Office</option>
-                    <option value="Outdoor">Outdoor</option>
-				</select><br/><br/>
-            <label for="manufactcost">Manufacturer Cost:</label>
-			<input type="text" id="manufactcost" name="pdata[manufacturerCost]" value="<?php echo $product_model->getmanufacturerCost()?>" placeholder="enter manufacturer cost" required ><br><br>
-            <label for="shipcost">Shipping Cost:</label>
-			<input type="text" id="shipcost" name="pdata[shippingCost]" value="<?php echo $product_model->getshippingCost()?>" placeholder="enter shipping cost" required ><br><br>
-            <label for="totalcost">Total Cost:</label>
-			<input type="text" id="totalcost" name="pdata[totalCost]" value="<?php echo $product_model->gettotalCost()?>" placeholder="enter total cost" required ><br><br>
-            <label for="price">Price:</label>
-			<input type="text" id="price" name="pdata[price]" placeholder="enter price" value="<?php echo $product_model->getprice()?>" required ><br><br>
-			<label for="status">Status:</label>
-				<select id="status" name="pdata[status]" value="<?php echo $product_model->getstatus()?>">
-				<option value="select">--Select--</option>
-					<option value=" Enabled" > Enabled</option>
-					<option value="Disabled">Disabled</option>
-				</select><br/><br/>	
-            <label for="createddate">Created At:</label>
-			<input type="date" id="createddate" name="pdata[createdAt]" value="<?php echo $product_model->getcreatrdAt()?>"><br><br>
-            <label for="updateddate">Updated At:</label>
-            <input type="date" id="updateddate" name="pdata[updatedAt]" value="<?php echo $product_model->getupdatedAt()?>"><br><br>
-			<input type="submit" name="submit" value="submit" />
+
+		  <h1>Product Form</h1><br><br>
+         <form action="<?php echo $this->getUrl("admin/catalog_product/save")?>" method="post" class="product">
 		
-		  </fieldset>
-		</form>
-	</body>
-</html>
+		 <label for="pid" hidden>Product Id:</label>
+	<input type="hidden" id="pid" name="pdata[product_id]" value="<?php echo $productModel->getProductId()?>" required ><br><br>
+	<label for="sku">SKU:</label>
+	<input type="text" id="sku" name="pdata[sku]" placeholder="enter stock keeping unit" value="<?php echo $productModel->getSku()?>" required ><br><br>
+	<label for="name">Name:</label>
+	<input type="text" id="name" name="pdata[name]" placeholder="enter product name" value="<?php echo $productModel->getName()?>" required ><br><br>
+	<label for="color">Color:</label>
+	<input type="color" id="color" name="pdata[color]"  value="<?php echo $productModel->getColor()?>" required ><br><br>
+	<label for="size">Size:</label>
+	<input type="text" id="size" name="pdata[size]" placeholder="enter size" value="<?php echo $productModel->getSize()?>" required ><br><br>
+	<label for="description">Description:</label><br>
+        <textarea id="description" name="pdata[description]" rows="4" cols="50">
+        </textarea><br>
+	<label for="imagelink">Image Link:</label>
+	<input type="file" id="imagelink" name="pdata[image_link]" placeholder="enter image link" value="<?php echo $productModel->getImageLink()?>" ><br><br>
+	<label for="link">Link:</label>
+	<input type="file" id="link" name="pdata[link]" placeholder="enter link" value="<?php echo $productModel->getLink()?>" ><br><br>
+	<label for="cid">Category Id:</label>
+	<input type="text" id="cid" name="pdata[category_id]" placeholder="enter category id" value="<?php echo $productModel->getCategoryId()?>" required ><br><br>
+	<label for="price">Price:</label>
+	<input type="text" id="price" name="pdata[price]" placeholder="enter price" value="<?php echo $productModel->getPrice()?>" required ><br><br>
+    <label for="mfrcost">Manufacturer Cost:</label>
+	<input type="text" id="mercost" name="pdata[mfr_cost]" placeholder="enter manufacturer cost" value="<?php echo $productModel->getMfrCost()?>" required ><br><br>
+    <label for="shipcost">Shipping Cost:</label>
+	<input type="text" id="shipcost" name="pdata[shipping_cost]" placeholder="enter shipping cost" value="<?php echo $productModel->getShippingCost()?>" required ><br><br>
+    <label for="totalcost">Total Cost:</label>
+	<input type="text" id="totalcost" name="pdata[total_cost]" placeholder="enter total cost" value="<?php echo $productModel->getTotalCost()?>" required ><br><br>
+    <label for="mper">Margin Percentage:</label>
+	<input type="text" id="mper" name="pdata[margin_percentage]" placeholder="enter margin percentage" value="<?php echo $productModel->getMarginPercentage()?>" required ><br><br>
+	<label for="mprice">Min Price:</label>
+	<input type="text" id="mprice" name="pdata[min_price]" placeholder="enter min price" value="<?php echo $productModel->getMinPrice()?>" required ><br><br>
+	<label for="status">Status:</label>
+		<select id="status" name="pdata[status]" >
+			<option value="select">--Select--</option>
+			<option value=1 <?php echo $productModel->getStatus() == 'Enable' ? 'selected':""?> >Enabled</option>
+			<option value=0 <?php echo $productModel->getStatus() == 'Disable' ? 'selected':""?>>Disabled</option>
+		</select><br/><br/>	
+	<input type="submit" name="submit" value="submit"/>
+</form>
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+

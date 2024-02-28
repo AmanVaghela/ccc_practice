@@ -1,7 +1,9 @@
 <?php
     class Mage
     {
+       public static $registry=[];
         private static  $baseDir  = "C:/xampp/htdocs/Cybercom_PHP/mvcproject/";
+        private static $singleton= [];
         public static function init()
         {   
         //     $name = Mage::getModel("core/request");
@@ -12,19 +14,25 @@
                 $frontController->init();
         }
 
-        public static function getSingleton($className)
-        {
-
+        public static function getSingleton($className) 
+        { 
+            if(isset(self::$singleton[$className]))
+            {
+              return self::$singleton[$className];
+            }
+              return self::$singleton[$className]= self::getModel($className);
         }
 
-        public static function getModel($className)
+        public static function getModel($modelname)
         {
-            $array = explode('/',$className);
-            $fullName = ucfirst($array[0])."_Model_". ucfirst($array[1]);
+            $model = explode('/',$modelname);
+            $modelObj = ucfirst($model[0])."_Model_". ucfirst($model[1]);
+            // $array = explode('/',$className);
+            // $fullName = ucfirst($array[0])."_Model_". ucfirst($array[1]);
            // $a = array_map('ucfirst',$array);
            // $fullName = $a[0]."_Model_".$a[1];
 
-            return new $fullName();
+          return new $modelObj;
 
         }
         

@@ -26,13 +26,12 @@
            
         }
 
-        public function getParams($key = '',$arg=null) 
-        {
+        public function getParams($key = '', $arg = null) {
             return ($key == '')
                 ? $_REQUEST
                 : (isset($_REQUEST[$key])
                     ? $_REQUEST[$key]
-                    : ''
+                    : ((!is_null($arg)) ? $arg : '')
                 );
         }
 
