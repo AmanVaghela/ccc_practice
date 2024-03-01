@@ -4,7 +4,7 @@
         public function init()
         {
             
-            $request = new Core_Model_Request();
+            $request = Mage::getModel("core/request");
             $actionName = $request->getActionName().'Action';
             //echo $actionName;
             $fullClassName = $request->getFullControllerClass();    

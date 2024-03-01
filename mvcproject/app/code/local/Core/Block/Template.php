@@ -6,7 +6,10 @@
         protected $_child = [];
         public function toHtml()
         {
+            ob_start();
+            ob_clean();
             $this->render();
+            ob_end_flush();
         }
 
         public function addChild($key, $value)

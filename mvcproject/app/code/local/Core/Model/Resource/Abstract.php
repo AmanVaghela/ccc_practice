@@ -1,5 +1,5 @@
 <?php
-Class Core_Model_Resource_Abstract
+Class Core_Model_Resource_Abstract 
 
 {
     protected $_tableName = null;
@@ -25,58 +25,33 @@ Class Core_Model_Resource_Abstract
     }
     public function load($id, $column = null)
     {
-        $query =  "SELECT * FROM {$this->getTableName()} WHERE  {$this->getPrimaryKey()} = {$id} LIMIT 1";
-        //echo $query;
-        return $this->getAdapter()->fetchRow($query);
+        $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey} = {$id} LIMIT 1";
+        return $this->getAdapter()->fetchRow($sql);
     }
 
-    // public function save(Catalog_Model_Product $product)
-    // {
-
-    //     $data = $product->getData();
-    // //    print_r($data);
-    //     // var_dump($data($this->getPrimaryKey()));
-
-    //     if (isset($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()])) 
-    //      {
-    //         echo "rahul";
-    //         unset($data[$this->getPrimaryKey()]);
-    //         $sql=$this->updateSql($this->getTableName(), $data,[$this->getPrimaryKey()=>$product->getId()]);
-            
-    //         $id = $this->getAdapter()->update($sql);
-    //         // echo $sql;
-    //      }
-    //      else
-    //      {
-    //        $sql=$this->insertSql($this->getTableName(), $data);
-           
-    //        $id = $this->getAdapter()->insert($sql);
-           
-    //        ($product->setId($id));
-    //      }
+    
 
 
     public function save(Core_Model_Abstract $value)
     {
-        // echo 111;
+        echo 111;
+         echo "<pre>";
         $data = $value->getData();
-        // print_r($data); 
+        //  print_r($data); 
+         //echo $this->getTableName();
+         
+         //var_dump($value->getId());
         if (isset($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()])) {
             unset($data[$this->getPrimaryKey()]);
-            $sql = $this->updateSql(
-                $this->getTableName(),
-                $data,
-                [$this->getPrimaryKey() => $value->getId()]
-            );
+            $sql = $this->updateSql($this->getTableName(),$data,[$this->getPrimaryKey() => $value->getId()]);
             $id =  $this->getAdapter()->update($sql);
         } else {
-                        
+         
             $sql = $this->insertSql($this->getTableName(), $data);
-            //print_r( $this->getTableName());// $sql;
             $id =  $this->getAdapter()->insert($sql);
             $value->setId($id);
         }
-        echo $sql;
+        // echo $sql;
 
 
     //     // $insertData = $this->insertSql($this->getTableName(), $data);

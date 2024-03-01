@@ -1,28 +1,34 @@
 <?php
-    class Core_Controller_Front_Action
+
+class Core_Controller_Front_Action
+{
+    public function __construct()
     {
-        protected $_layout =null;
-        public function getLayout()
-        {
-            if (is_null($this->_layout))
-            {
-                $this->_layout = Mage::getBlock("core/layout");
-            }
-        return $this->_layout;
-        }
-
-        public function getRequest()
-        {
-            return Mage::getModel("core/request");
-        }
+        $this->init();
     }
-?>
-<!-- public function deleteAction()
-     {
-      //echo "catalog controller product delete";
-      
-      $productModel = Mage::getModel('catalog/product')->load($this->getRequest()->getParams('id',0));
-      $productModel->delete();
 
-      // header('Location: list');
-     } -->
+    public function init() {
+        return $this;
+    }
+    protected $layout = null;
+    public function getLayout()
+    {
+        if(is_null($this->layout))
+        {
+            $this->layout = Mage::getBlock("core/layout");
+            // echo "From Action getLayout function";
+        }
+        return $this->layout;
+    }
+    public function getRequest()
+    {
+        return Mage::getModel('core/request');
+    }
+    public function setRedirect($url)
+    {
+        $url = Mage::getBaseUrl().$url;
+        header("Location:". $url);
+    }
+}
+
+?>

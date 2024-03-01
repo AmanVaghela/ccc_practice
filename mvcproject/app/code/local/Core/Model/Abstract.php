@@ -4,10 +4,12 @@ class Core_Model_Abstract
 {
 
     protected $_data = [];
+    protected $modelClass = '';
     protected $resourceClass = '';
     protected $collectionClass = '';
     protected $resource = null;
     protected $collection = null;
+   
     public function __construct()
     {
         $this->init();
@@ -42,7 +44,10 @@ class Core_Model_Abstract
     public function getCollection()
     {
         $collection = new $this->collectionClass();
+        // var_dump($collection);
+        $collection->setModelClass($this->modelClass);
         $collection->setResource($this->getResource());
+        // $collection->getModel($this->modelClass);
         $collection->select();
         return $collection;
     }
@@ -82,12 +87,11 @@ class Core_Model_Abstract
 
         // $this->_data;
         // print_r($this->_data);
-        // return $this;
-        return $this->_data;
-    
+return $this->_data;    
     }
     public function setData($data)
     {
+// print_r($data); 
         $this->_data = $data;
         return $this;
     }
@@ -101,10 +105,11 @@ class Core_Model_Abstract
     }
     public function save()
     {
-        //echo "45654";
+       
         //print_r($this->getdata());
         // $this->_beforeSave();
         $this->getResource()->save($this);
+      // var_dump($this); 
         // $this->_afterSave();
         return $this;
     }

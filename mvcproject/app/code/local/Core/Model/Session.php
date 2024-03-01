@@ -10,10 +10,10 @@ class Core_Model_Session
     //    }
 
     }
-    public function __destruct()
-    {
+    // public function __destruct()
+    // {
 
-    }
+    // }
     public function get($key)
     {
         if(array_key_exists($key, $_SESSION))

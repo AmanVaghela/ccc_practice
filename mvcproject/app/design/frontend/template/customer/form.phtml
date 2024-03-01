@@ -1,48 +1,102 @@
-<!-- <form action="/submit_customer_info" method="post"> -->
-    <label for="customer_id">Customer ID:</label><br>
-    <input type="text" id="customer_id" name="customer_id" required><br><br>
-
-    <label for="customer_email">Customer Email:</label><br>
-    <input type="email" id="customer_email" name="customer_email" required><br><br>
-
-    <label for="first_name">First Name:</label><br>
-    <input type="text" id="first_name" name="first_name" required><br><br>
-
-    <label for="last_name">Last Name:</label><br>
-    <input type="text" id="last_name" name="last_name" required><br><br>
-
-    <label for="billing_address">Billing Address:</label><br>
-    <input type="text" id="billing_address" name="billing_address" required><br><br>
-
-    <label for="billing_city">Billing City:</label><br>
-    <input type="text" id="billing_city" name="billing_city" required><br><br>
-
-    <label for="billing_region">Billing Region:</label><br>
-    <input type="text" id="billing_region" name="billing_region"><br><br>
-
-    <label for="billing_country">Billing Country:</label><br>
-    <input type="text" id="billing_country" name="billing_country" required><br><br>
-
-    <label for="billing_phone">Billing Phone:</label><br>
-    <input type="tel" id="billing_phone" name="billing_phone" required><br><br>
-
-    <label for="shipping_address">Shipping Address:</label><br>
-    <input type="text" id="shipping_address" name="shipping_address" required><br><br>
-
-    <label for="shipping_city">Shipping City:</label><br>
-    <input type="text" id="shipping_city" name="shipping_city" required><br><br>
-
-    <label for="shipping_region">Shipping Region:</label><br>
-    <input type="text" id="shipping_region" name="shipping_region"><br><br>
-
-    <label for="shipping_country">Shipping Country:</label><br>
-    <input type="text" id="shipping_country" name="shipping_country" required><br><br>
-
-    <label for="shipping_phone">Shipping Phone:</label><br>
-    <input type="tel" id="shipping_phone" name="shipping_phone" required><br><br>
-
-    <label for="default">Default:</label><br>
-    <input type="checkbox" id="default" name="default"><br><br>
-
-    <input type="submit" value="Submit">
-</form>
+<?php $customerData = $this->getCustomer();
+// echo Mage::getSingleton('core/session')->remove('customerId');
+// echo "<pre>";
+// print_r($customerData);
+?>
+<div class="product-section">
+	<div class="container">
+		<div class="row justify-content-between">   
+            <form method="POST" action="<?php echo $this->getUrl("customer/account/save")?>">
+		      <div class="row">
+		        <div class="mb-md-0">
+		          <h2 class="h3 mb-3 text-black">Customer Details</h2>
+		          <div class="p-3 p-lg-5 border bg-white">
+		            <div class="form-group row">
+		              <div class="col-md-6">
+		                <input type="hidden" class="form-control" name="customer[customer_id]" value="<?php echo $customerData->getId() ?>">
+		                <label for="c_fname" class="text-black">Email Id<span class="text-danger">*</span></label>
+		                <input type="email" class="form-control" name="customer[customer_email]" value="<?php echo $customerData->getCustomerEmail() ?>">
+					</div>
+					<div class="col-md-3">
+					<label for="c_fname" class="text-black">Password<span class="text-danger">*</span></label>
+		                <input type="password" class="form-control" name="customer[password]" value="<?php echo $customerData->getCustomerPassword() ?>">  
+					</div>
+		              <div class="col-md-3">
+		                <label for="c_lname" class="text-black">First Name <span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[first_name]" id="first_name" value="<?php echo $customerData->getFirstName() ?>">
+		              </div>
+		            </div>
+					<div class="form-group row">
+		              <div class="col-md-6">
+		                <label for="c_fname" class="text-black">Last Name<span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[last_name]" value="<?php echo $customerData->getLastName() ?>">
+		              </div>
+		              <div class="col-md-6">
+		                <label for="c_lname" class="text-black">Billing Address <span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[billing_address]" id="billing_address" value="<?php echo $customerData->getBillingAddress() ?>">
+		              </div>
+		            </div>
+					<div class="form-group row">
+		              <div class="col-md-6">
+		                <label for="c_fname" class="text-black">Billing City<span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[billing_city]" value="<?php echo $customerData->getBillingCity() ?>">
+		              </div>
+		              <div class="col-md-6">
+		                <label for="c_lname" class="text-black">Billing Region<span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[billing_region]" id="billing_region" value="<?php echo $customerData->getBillingRegion() ?>">
+		              </div>
+		            </div>
+					<div class="form-group row">
+		              <div class="col-md-6">
+		                <label for="c_fname" class="text-black">Billing Country<span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[billing_country]" value="<?php echo $customerData->getBillingCountry() ?>">
+		              </div>
+		              <div class="col-md-6">
+		                <label for="c_lname" class="text-black">Billing Phone<span class="text-danger">*</span></label>
+		                <input type="number" class="form-control" name="customer[billing_phone]" id="billing_phone" value="<?php echo $customerData->getBillingPhone() ?>">
+		              </div>
+		            </div>
+					<div class="form-group row">
+					  <div class="col-md-6">
+		                <label for="c_lname" class="text-black">Shipping Address <span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[shipping_address]" id="shipping_address" value="<?php echo $customerData->getShippingAddress() ?>">
+		              </div>
+		              <div class="col-md-6">
+		                <label for="c_fname" class="text-black">Shipping City<span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[shipping_city]" value="<?php echo $customerData->getShippingCity() ?>">
+		              </div>
+		            </div>
+					<div class="form-group row">
+					  <div class="col-md-6">
+		                <label for="c_lname" class="text-black">Shipping Region<span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[shipping_region]" id="Shipping" value="<?php echo $customerData->getShippingRegion() ?>">
+		              </div>
+		              <div class="col-md-6">
+		                <label for="c_fname" class="text-black">Shipping Country<span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[shipping_country]" value="<?php echo $customerData->getShippingCountry() ?>">
+		              </div>
+		            </div>
+					<div class="form-group row">
+					  <div class="col-md-6">
+		                <label for="c_lname" class="text-black">Shipping Phone<span class="text-danger">*</span></label>
+		                <input type="number" class="form-control" name="customer[shipping_phone]" id="billing_phone" value="<?php echo $customerData->getShippingPhone() ?>">
+		              </div>
+		              <div class="col-md-6">
+		                <label for="c_fname" class="text-black">Default<span class="text-danger">*</span></label>
+		                <input type="text" class="form-control" name="customer[default]" value="<?php echo $customerData->getDefault() ?>">
+		              </div>
+		            </div>
+                    <div class="form-group row">
+		              <div class="col-md-6 mt-4">
+		                <input type="submit" class="btn btn-black btn-sm">
+		              </div>
+		              
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+            </form>
+		      <!-- </form> -->
+		</div>
+	</div>
+</div>

@@ -48,6 +48,23 @@
                 echo "Error: " . $updatequery . "<br>" . $conn->error;
             }
         }
+
+		/*
+		  if(isset($_POST['update']))
+		  {
+				$id= $_GET['updateid'];
+				$pdata= $_GET['pdata'];
+				$update=update('ccc_product',$pdata,["id"=>$id]);
+				if(mysqli_quary($conn,$update))
+				{
+					echo"row updated";
+				}
+				else
+				{
+				  echo "error:".$update."<br>".$conn->error; 	
+			    }
+		  }
+		*/
 ?>
 
 

@@ -2,11 +2,17 @@
     class Core_Model_Resource_Collection_Abstract
     {
         protected $_resource = null;
+        protected $_modelClass = '';
         protected $_select = [];
 
         protected $_isLoaded = false;
 
         protected $_data = [];
+
+        public function setModelClass($modelClass) {
+            $this->_modelClass = $modelClass;
+        }
+
         public function setResource(Core_Model_Resource_Abstract $resource) {
             $this->_resource = $resource;
             return $this;
@@ -17,11 +23,19 @@
             if (!$this->_isLoaded) {
                 $this->load();
             }
+            // echo 121231123;
+            // print_r($this->_data);
             return $this->_data;
         }
 
+        // public function getModel($modelClass){
+        //     $this->_model = $modelClass;
+        // }
+
         public function select() {
+            // echo "123";
             $this->_select['from'] = $this->_resource->getTableName();
+            // print_r($this);
             return $this;
         }
 
@@ -88,15 +102,19 @@
                             }
                         }
                     }
-                    $whereCond = implode(" AND ", $whereCond);
-                    $sql .= "WHERE $whereCond";
                 }
+                $whereCond = implode(" AND ", $whereCond);
+                $sql .= "WHERE $whereCond";
             }
+            // echo $sql;
             // echo $sql;die;
             $result = $this->_resource->getAdapter()->fetchAll($sql);
+            // print_r($result);
             foreach($result as $row) {
-                $this->_data[] = Mage::getModel('catalog/product')->setData($row);
+                
+                $this->_data[] = Mage::getModel($this->_modelClass)->setData($row);
             }
+            // print_r($this->_data);
             $this->_isLoaded = true;
             return $this;
         }

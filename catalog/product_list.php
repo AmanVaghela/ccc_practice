@@ -34,6 +34,7 @@
                 while($row =mysqli_fetch_assoc($result))
                 {
             ?>
+            
             <td><?php echo $row['id']; ?> </td>
             <td><?php echo $row['productName']; ?> </td>
             <td><?php echo $row['sku']; ?> </td>
@@ -48,6 +49,8 @@
             <td><?php echo $row['updatedAt']; ?> </td>
         <?php echo "<td><a href = 'product.php?updateid=" .$row['id']."'>Update</a></td>";?>
         <?php  echo "<td><a href = 'product.php?deleteid=" .$row['id']."'>Delete</a></td>";?>
+
+       
         </tr> 
             <?php
                 }

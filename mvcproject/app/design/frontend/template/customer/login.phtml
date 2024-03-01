@@ -45,16 +45,38 @@
 
 <div class="login-container">
     <h2>Login</h2>
-    <form action="<?php echo $this->getUrl("customer/account/login")?>" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+    <form action="login" method="post">
+        <label for="customer_email">Username:</label>
+        <input type="text" id="customer_email" name="login[customer_email]" >
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="login[password]" >
 
-        <input type="submit" value="Login">
+        <!-- <input type="submit" value="Submit" class="btn btn-black btn-sm"> -->
+        <button onclick="loginAction(this)">Login</button>
     </form>
 </div>
 
 </body>
 </html>
+<script type="text/javascript">
+	function loginAction(btn) {
+		//console.log($('#login-form'));
+		var form = $($('#login-form')[0]);
+		console.log(form.serialize());
+		$.ajax({
+			url: form.action,
+			type:'POST',
+			// contentType: "application/json",
+			data: form.serialize()	
+		}).done(function(response) {
+			var output = JSON.parse(response);
+			// alert(response)
+			alert(output.type)
+			$('#message')[0].innerHTML = output.message;
+			alert(output.message)
+			$( this ).addClass( "done" );
+			$( this ).addClass( "done" );
+		});
+	}
+</script>

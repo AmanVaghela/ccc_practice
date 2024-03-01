@@ -66,5 +66,14 @@
             }
             return  self::$baseDir; 
         }
+        public static function setBaseUrl()
+        {
+            return "http://localhost/Cybercom_PHP/mvcproject/";
+        }
+    public static function getBaseUrl()
+        {
+            return "http://localhost/Cybercom_PHP/mvcproject/";
+        }
+    
     }
 ?>

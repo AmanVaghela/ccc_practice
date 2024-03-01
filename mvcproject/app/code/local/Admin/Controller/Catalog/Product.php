@@ -1,67 +1,55 @@
- <?php
-   class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
-   {
-     public function saveAction()
-     {
-         //$data = $this->getRequest()->getParam();
-         echo"<pre>";
-         
-         //echo "123";
-         $data=$this->getRequest()->getParams('pdata'); 
-         //print_r($data);
-         $productModel = Mage::getModel('catalog/product');//Catalog_Model_Product
-         //print_r($productModel);
-        // $productModel->setData($data);
-         $productModel->setData($data)->save();
-         print_r($productModel);
-      // die;
-     }
+<?php
 
-     public function deleteAction()
-     {
-      //echo "catalog controller product delete";
-      
-      Mage::getModel('catalog/product')
-                ->load($this->getRequest()->getParams('id',0))
-                ->delete();
-
-     }
-     public function formAction()
-     {
-      //echo "<pre>";
-      $layout = $this->getLayout();
-      //Core_Block_Layout
-      $layout->getChild('head')->addJs('js/page.js');
-      $layout->getChild('head')->addJs('js/head.js');
-      $layout->getChild('head')->addCss('css/page.css');
-      $layout->getChild('head')->addCss('css/head.css');
-      $child =$layout->getChild('content');
-      // $form = $layout->createBlock('core/template')->setTemplate('catalog/admin/product/form.phtml');
-      $form = $layout->createBlock('catalog/admin_product_form');
-     // Core_Block_Layout->createBlock('catalog/admin_product_form');
-      $child->addChild('form',$form);
-      //print_r($layout);
-
-      $layout->toHtml();
-     }
-
-     public function listAction()
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
+{
+    protected $_allowActions = [
+        "list",
+    ] ;
+    public function saveAction()
     {
-        $layout = $this->getLayout();//Core_Block_Layout
-        $layout->getChild('head')->addJs('js/page.js');
-        $layout->getChild('head')->addJs('js/head.js');
-        $layout->getChild('head')->addCss('css/page.css');
-        $layout->getChild('head')->addCss('css/head.css');
-        $child = $layout->getChild('content');
-
-        $productForm = $layout->createBlock('catalog/admin_product_list')
-            ->setTemplate('catalog/admin/product/list.phtml');
-        $child->addChild('list', $productForm);
-
-
-        $layout->toHtml();
-
+        try{
+            if(!$this->getRequest()->isPost()){
+                throw new Exception("request is not Valid");
+            }
+            $data = $this->getRequest()->getParams('catalog_product');
+            if(!isset($data['price']) || !is_numeric($data['price']))
+            {
+                throw new Exception("price is in numeric");
+            }
+            // print_r("Data from get params <br>",$data);
+            // $id = (isset($data['product_id'])) ? $data['product_id']:0;
+            $productModel = Mage::getModel("catalog/product");
+            $productModel->setData($data)->save();
+            $this->setRedirect("admin/catalog_product/form?id={$productModel->getId()}");
+        }
+        catch(Exception $e){
+            var_dump($e->getMessage());
+        }
+        
     }
+    public function formAction()
+    {
+        $layout = $this->getLayout();
+        $child = $layout->getChild('content');
+        $productForm =  $layout->createBlock('catalog/admin_product_form');
+        // print_r($productForm);
+        $child->addChild('productForm',$productForm);
+        $layout->toHtml();
+    }
+    public function listAction()
+    {
+        $layout = $this->getLayout();
+        $child = $layout->getChild('content');
+        $productList =  $layout->createBlock('catalog/admin_product_list');
+        $child->addChild('productList',$productList);
+        $layout->toHtml();
+    }
+    public function deleteAction()
+    {
+        Mage::getModel('catalog/product')
+            ->load($this->getRequest()->getParams('id',0))
+            ->delete();
+    }
+}
 
-         
-   } 
+?>
