@@ -1,21 +1,29 @@
 <?php
-//$wishlistModel = $this->getWishlistData();
+$data = $this->getWishlist();
 ?>
-<form method="post" action="<?php $this->getUrl('Wishlist/Index_Form')?> ">
+<form action="<?php echo $this->getUrl('wishlist/index/save')?>"  method="post">
     <label for="userName">User Name:</label>
-    <input type="text" id="userName" name="wishlist[user_name] " value="<?php echo $wishlistModel->getuserName() ?>" required><br>
+    <input type="text" id="userName" name="wishlist[user_name] " value="<?php //echo $wishlistModel->getuserName() ?>" required><br>
 
    
 
-    <label for="Wishlist"></label>
-    <select id="wishlist" name="wishlist[Wishlist]" value="<?php echo $wishlistModel->getWishlist() ?>" required>
+    <!-- <label for="Wishlist"></label> -->
+    <!-- <select id="wishlist" name="wishlist[Wishlist]" value="<?php // echo $wishlistModel->getWishlist() ?>" required>
       <option>Personal</option>
       <option>Medical</option>
       <option>Kid zone</option>
-    </select><br>
+    </select><br> -->
+    <select name="wishlist[wishlist]" id="requirements" multiple>
+     <?php foreach($data->getData() as $data)
+{ ?>
+
+<option value="<?php echo $data->getName() ?>"><?php echo $data->getName() ?></option>
+<?php } ?>
+  </select>
+  <br>
 
     <label for="CreatedAt">Created At</label>
-    <input type="text" name="wishlist[Created_at]" id="Created_at" value="<?php echo $wishlistModel->getCreatedAt() ?>">
+    <input type="text" name="wishlist[created_at]" id="Created_at" value="<?php //echo $wishlistModel->getCreatedAt() ?>">
         </div>
     
     

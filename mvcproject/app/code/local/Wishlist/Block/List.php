@@ -5,5 +5,10 @@ class Wishlist_Block_List extends Core_Block_Template
     {
         $this->setTemplate("wishlist/list.phtml");
     }
+    // public function getWishlist()
+    // {
+    //     $listModel = Mage::getModel('wishlist/wishlist')->getCollection();
+    //     return $listModel;
+    // }
 }
 ?>
