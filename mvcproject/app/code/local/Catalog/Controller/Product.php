@@ -1,6 +1,20 @@
 <?php
    class Catalog_Controller_Product extends Core_Controller_Front_Action
    {
+    public function viewAction(){
+      //product details,quantity box & addToCart Button except cost
+      $layout=$this->getLayout();
+      // $layout->getChild("head")->addCss('../../skin/css/header.css');
+      // $layout->getChild("head")->addCss('../../skin/css/footer.css');
+      
+      $child= $layout->getChild("content");
+
+      $view=$layout->createBlock("catalog/admin_product")
+                      ->setTemplate("catalog/admin/product/view.phtml");
+      $child->addChild("view",$view);
+      
+      $layout->toHtml();
+  }
     //  public function saveAction()
     //  {
     //      //$data = $this->getRequest()->getParam();

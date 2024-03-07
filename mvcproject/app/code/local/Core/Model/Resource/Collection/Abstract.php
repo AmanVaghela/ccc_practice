@@ -30,7 +30,7 @@
 
         // public function getModel($modelClass){
         //     $this->_model = $modelClass;
-        // }
+        // }    
 
         public function select() {
             // echo "123";

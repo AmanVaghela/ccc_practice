@@ -22,8 +22,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                 exit() ;
             }
         }
-        
-        
     }
     public function registerAction()
     {
@@ -31,7 +29,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $child = $layout->getChild("content");
         $layout->removeChild('header');
         $layout->removeChild('footer');
-        $customerForm = $layout->createBlock("customer/form");
+        $customerForm = $layout->createBlock("customer/account_form");
         $child->addChild("customerForm",$customerForm);
         $layout->toHtml();
     }
@@ -75,7 +73,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                 $data = $this->getRequest()->getParams('login');
                 $message = [];
                 // echo "<pre>";
-                // print_r($data);
+                //print_r($data);
                 $custmerModel = Mage::getSingleton("customer/customer")->getCollection()
                 ->addFieldToFilter('customer_email',$data['customer_email'])
                 ->addFieldToFilter('password',$data['password']) ;
@@ -129,13 +127,10 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     }
     public function dashboardAction()
     {
-        ;
         
-        
-            $layout = $this->getLayout()
-                ;
+            $layout = $this->getLayout();
             $child = $layout->getChild('content');
-            $customerDashboard = $layout->createBlock('customer/dashboard');
+            $customerDashboard = $layout->createBlock('customer/account_dashboard');
             $child->addChild('customerDashboard',$customerDashboard);
             $layout->toHtml();
         

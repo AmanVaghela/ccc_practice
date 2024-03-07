@@ -25,14 +25,15 @@
 
         public static function getModel($modelname)
         {
-            $model = explode('/',$modelname);
-            $modelObj = ucfirst($model[0])."_Model_". ucfirst($model[1]);
-            // $array = explode('/',$className);
-            // $fullName = ucfirst($array[0])."_Model_". ucfirst($array[1]);
-           // $a = array_map('ucfirst',$array);
-           // $fullName = $a[0]."_Model_".$a[1];
+            // $model = explode('/',$modelname);
+            // //print_r($model);
+            // $modelObj = ucfirst($model[0])."_Model_". ucfirst($model[1]);
+            // print_r($modelObj);
+            $className=str_replace('/','_Model_',$modelname);
+            $className=ucwords(str_replace("/","_",$className),'_');
+            return new $className();
 
-          return new $modelObj;
+        
 
         }
         

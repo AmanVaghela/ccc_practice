@@ -1,0 +1,36 @@
+<?php 
+    $bannerId = $this->getRequest()->getParams('id',0);
+    $bannerModel = Mage::getModel('banner/banner')->load($bannerId);
+?>
+<div class="banner-form">
+    <h2>Banner Form</h2>
+    <form method="POST" action="<?php echo $this->getUrl('admin/banner/save') ?>">
+        <div class="row">
+            <!-- <label for="sku">SKU : </label> -->
+            <input type="hidden" name="banner[banner_id]" value="<?php echo $bannerModel->getBannerId() ?>">
+        </div>
+        <div class="row">
+            <label for="banner_image">Image</label>
+            <input type="file" name="banner[banner_image]" id="banner_image"
+                value="<?php echo $bannerModel->getBannerImage() ?>">
+        </div>
+        <div class="row">
+            <label for="status">Status:</label>
+            <select id="status" name="banner[status]">
+                <option value="select" <?php echo $bannerModel->getstatus() == 'select' ? 'selected' : ''; ?>>--Select--
+                </option>
+                <option value=" 1" <?php echo $bannerModel->getstatus() == 'Enabled' ? 'selected' : ''; ?>> Enabled
+                </option>
+                <option value="0" <?php echo $bannerModel->getstatus() == 'Disabled' ? 'selected' : ''; ?>> Disabled
+                </option>
+            </select>
+        </div>
+        <div class="row">
+            <label for="show_on">Show On:</label>
+            <input type="text" name="banner[show_on]" id="show_on" value="<?php echo $bannerModel->getShowOn() ?>">
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>

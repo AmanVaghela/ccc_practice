@@ -1,0 +1,24 @@
+<?php
+//$wishlistModel = $this->getWishlistData();
+?>
+<form method="post" action="<?php $this->getUrl('Wishlist/Index_Form')?> ">
+    <label for="userName">User Name:</label>
+    <input type="text" id="userName" name="wishlist[user_name] " value="<?php echo $wishlistModel->getuserName() ?>" required><br>
+
+   
+
+    <label for="Wishlist"></label>
+    <select id="wishlist" name="wishlist[Wishlist]" value="<?php echo $wishlistModel->getWishlist() ?>" required>
+      <option>Personal</option>
+      <option>Medical</option>
+      <option>Kid zone</option>
+    </select><br>
+
+    <label for="CreatedAt">Created At</label>
+    <input type="text" name="wishlist[Created_at]" id="Created_at" value="<?php echo $wishlistModel->getCreatedAt() ?>">
+        </div>
+    
+    
+    <input type="submit" value="submit">
+
+</form>

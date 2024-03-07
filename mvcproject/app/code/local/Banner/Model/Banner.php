@@ -1,8 +1,19 @@
 <?php
-class Banner_Model_Banner
-{
-    
-}
-    
 
-?>
+class Banner_Model_Banner extends Core_Model_Abstract
+{
+    public function init()
+    {
+        $this->modelClass = "banner/banner";
+        $this->resourceClass = "Banner_Model_Resource_Banner";
+        $this->collectionClass = "Banner_Model_Resource_Collection_Banner";
+    }
+
+    public function getStatus()
+    {
+        $mapping = [1 => 'Enabled', 0 => 'Disabled'];
+        if (isset($this->_data['status'])) {
+            return $mapping[$this->_data['status']];
+        }
+    }
+}

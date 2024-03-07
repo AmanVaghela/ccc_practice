@@ -1,0 +1,50 @@
+<center><h1>Banner list</h1>
+<?php
+$bannerCollection = Mage::getModel('banner/banner')->getCollection();  // get category collection
+?>
+<!-- <center> -->
+<div class="table">
+    <table border="1px solid black">
+        <tr>
+            <th>Banner id</th>
+            <th>Banner Image</th>
+            <th>Status</th>
+            <th>Show On</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+        <?php
+        foreach ($bannerCollection->getData() as $banner) {
+
+            ?>
+            <tr>
+                <td>
+                    <?php print_r($banner->getBannerId());?>
+                </td>
+                <td><img src="<?php print_r(Mage::getBaseUrl() . 'media/banner/'.$banner->getBannerImage()); ?>" height=100 width=150>
+                    
+                </td>
+                <td>
+                    <?php print_r($banner->getStatus()); ?>
+                </td>
+                <td>
+                    <?php print_r($banner->getShowOn()); ?>
+                </td>
+                <td><a href="form?id=<?php echo $banner->getid(); ?>"><button class="edit">Edit</button></a></td>
+                <td><a href="delete?id=<?php echo $banner->getid(); ?>"><button class="delete">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" fill="currentColor"
+                                class="bi bi-trash" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                <path
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                            </svg>
+                        </button></a></td>
+            </tr>
+            <?php
+        }
+        ?>
+    </table>
+    <   center>
+</div>

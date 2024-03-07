@@ -1,0 +1,22 @@
+<?php
+$wishlistCollection = Mage::getModel('wishlist/wishlist')->getCollection()
+?>
+<div class="table" style="margin-top:20px;">
+    <table border="1px solid black">
+        <tr>
+        <th>SKU</th>
+            <th>UserName</th>
+            <th>Wishlist</th>
+            <th>CreatedAt</th>
+        </tr>
+        <?php foreach($wishlistCollection->getData() as $whishlist) {
+            
+            ?>
+        <tr>
+        <tr>
+            <td><?php print_r($whishlist->getId());?></td>
+            <td><?php print_r($whishlist->getUserName());?></td>
+            <td><?php print_r($whishlist->getCreatedAt());?></td>
+        </tr>
+        <?php }?>
+        </div>
