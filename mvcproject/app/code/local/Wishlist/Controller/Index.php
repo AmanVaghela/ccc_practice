@@ -1,14 +1,7 @@
 <?php
 class Wishlist_Controller_Index extends Core_Controller_Front_Action
 {
-    // public function saveAction()
-    // {
-       
-    //         // $data = $this->getRequest()->getParams('Wishlist');
-    //         // $ = Mage::getModel("wishlist/wishlist"); 
-    //         // $->setData($data)->save();
-            
-    //     }
+    
            public function saveAction()
         {
             $data = $this->getRequest()->getParams('wishlist');
