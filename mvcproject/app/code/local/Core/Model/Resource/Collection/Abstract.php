@@ -27,6 +27,13 @@
             // print_r($this->_data);
             return $this->_data;
         }
+        public function getFirstItem(){
+            if (!$this->_isLoaded) {
+                $this->load();
+            }
+            return $this->_data[0];
+        }
+
 
         // public function getModel($modelClass){
         //     $this->_model = $modelClass;

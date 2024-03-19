@@ -1,13 +1,14 @@
 <?php
 // Mage::getSingleton('core/session')->remove('customerId');
   $productModel = $this->getProduct();
+ 
 ?>
 
 		  <h1>Product Form</h1><br><br>
          <form action="<?php echo $this->getUrl("admin/catalog_product/save")?>" method="post" class="product">
 		
-		 <label for="pid" hidden>Product Id:</label>
-	<input type="hidden" id="pid" name="pdata[product_id]" value="<?php echo $productModel->getProductId()?>" required ><br><br>
+	<label for="pid">Product Id:</label>
+	<input type="text" id="pid" name="pdata[product_id]" value="<?php echo $productModel->getProductId()?>" ><br><br>
 	<label for="sku">SKU:</label>
 	<input type="text" id="sku" name="pdata[sku]" placeholder="enter stock keeping unit" value="<?php echo $productModel->getSku()?>" required ><br><br>
 	<label for="name">Name:</label>

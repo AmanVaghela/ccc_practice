@@ -11,16 +11,19 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
             if(!$this->getRequest()->isPost()){
                 throw new Exception("request is not Valid");
             }
-            $data = $this->getRequest()->getParams('catalog_product');
-            if(!isset($data['price']) || !is_numeric($data['price']))
-            {
-                throw new Exception("price is in numeric");
-            }
+            $data = $this->getRequest()->getParams('pdata');
+            //print_r($data);
+        
+        //    if(!isset($data['price']) || !is_numeric($data['price']))
+        //     {
+        //         throw new Exception("price is in numeric");
+        //     }
             // print_r("Data from get params <br>",$data);
             // $id = (isset($data['product_id'])) ? $data['product_id']:0;
             $productModel = Mage::getModel("catalog/product");
+            //print_r($productModel);
             $productModel->setData($data)->save();
-            $this->setRedirect("admin/catalog_product/form?id={$productModel->getId()}");
+            // $this->setRedirect("admin/catalog_product/form?id={$productModel->getId()}");
         }
         catch(Exception $e){
             var_dump($e->getMessage());
@@ -32,6 +35,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
         $productForm =  $layout->createBlock('catalog/admin_product_form');
+                        //->setTemplate('catalog/admin/product/form.phtml');
         // print_r($productForm);
         $child->addChild('productForm',$productForm);
         $layout->toHtml();

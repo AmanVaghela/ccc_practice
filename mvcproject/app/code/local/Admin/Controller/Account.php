@@ -40,8 +40,7 @@ class Admin_Controller_Account extends Core_Controller_Admin_Action
         //$layout->getChild('footer')->addJs('libs/bootstrap/js/bootstrap.bundle.min.js');
         $child = $layout->getChild('content');
 
-        $loginForm = $layout->createBlock('admin/account')
-            ->setTemplate('core/admin.phtml');
+        $loginForm = $layout->createBlock('admin/account');
         $child->addChild('form', $loginForm);
         $layout->toHtml();
     }

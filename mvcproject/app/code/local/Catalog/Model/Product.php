@@ -6,7 +6,7 @@ class Catalog_Model_Product extends Core_Model_Abstract
     //echo "123";
     $this->resourceClass="Catalog_Model_Resource_Product";
     $this->collectionClass="Catalog_Model_Resource_Collection_Product";
-    $this->modelClass = "Catalog_Model_Product";
+    $this->modelClass = "Catalog_Model_Product"; 
   }
 
   public function getStatus()

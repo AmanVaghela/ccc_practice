@@ -1,0 +1,33 @@
+
+
+<?php
+// echo "<pre>";
+$categoryModel = $this->getCategory();
+
+print_r($categoryModel->getCategoryId());
+ print_r($categoryModel->getCategoryName());
+ print_r($categoryModel->getStatus());
+
+// echo "</pre>";
+?>
+
+<!-- <form action="YOUR_ACTION_URL_HERE" method="post"> -->
+<form action="<?php echo $this->getUrl("admin/catalog_category/save") ?>" method="post" class="product">
+
+    <label for="category_id" hidden>Category ID:</label>
+    <input type="hidden" id="category_id" name="category[category_id]" placeholder="Enter category ID"
+        value="<?php //echo $categoryModel->getCategoryId() ?>" required><br><br>
+
+    <label for="category_name">Category Name:</label>
+    <input type="text" id="category_name" name="category[category_name]" placeholder="Enter category name"
+        value="<?php //echo $categoryModel->getCategoryName() ?>" required><br><br>
+
+    <label for="status">Status:</label>
+    <select id="status" name="category[status]" required>
+        <option value="select">--Select--</option>
+		<option value=1 <?php //echo $categoryModel->getStatus() == 'Enable' ? 'selected':""?> >Enabled</option>
+		<option value=0 <?php //echo $categoryModel->getStatus() == 'Disable' ? 'selected':""?>>Disabled</option> 
+    </select><br><br>
+
+    <input type="submit" name="submit" value="Submit">
+</form>

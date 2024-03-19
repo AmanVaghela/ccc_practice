@@ -52,5 +52,12 @@ class Admin_Controller_Banner extends Core_Controller_Front_Action
         $layout->toHtml();
 
     }
+
+    // public function deleteAction()
+    // {
+    //     Mage::getModel('catalog/product')
+    //         ->load($this->getRequest()->getParams('id',0))
+    //         ->delete();
+    // }
     
 }

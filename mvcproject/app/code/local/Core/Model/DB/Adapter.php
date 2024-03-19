@@ -1,7 +1,7 @@
 <?php
     class Core_Model_DB_Adapter
     {
-        //public $connect = null;
+        // public $connect = null;
         public $config=
         [
             "host"=>"localhost",
@@ -57,8 +57,7 @@
 
            if(mysqli_query($this->connect(), $query))
            {
-            return true;
-            // return mysqli_insert_id($this->connect);
+            return mysqli_insert_id($this->connect);
            }
            else
            {

@@ -11,7 +11,7 @@ class Core_Controller_Admin_Action extends Core_Controller_Front_Action
         ){
             $session = false;
             if($session == false){
-                $this->setRedirect('admin/account/login');
+              //  $this->setRedirect('admin/account/login');
             }
         }
     }

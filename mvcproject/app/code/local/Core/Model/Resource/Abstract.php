@@ -34,10 +34,10 @@ Class Core_Model_Resource_Abstract
 
     public function save(Core_Model_Abstract $value)
     {
-        echo 111;
+
          echo "<pre>";
         $data = $value->getData();
-        //  print_r($data); 
+        // print_r($data); 
          //echo $this->getTableName();
          
          //var_dump($value->getId());
@@ -45,13 +45,14 @@ Class Core_Model_Resource_Abstract
             unset($data[$this->getPrimaryKey()]);
             $sql = $this->updateSql($this->getTableName(),$data,[$this->getPrimaryKey() => $value->getId()]);
             $id =  $this->getAdapter()->update($sql);
+            
         } else {
          
             $sql = $this->insertSql($this->getTableName(), $data);
             $id =  $this->getAdapter()->insert($sql);
             $value->setId($id);
         }
-        // echo $sql;
+         echo $sql;
 
 
     //     // $insertData = $this->insertSql($this->getTableName(), $data);
@@ -61,10 +62,10 @@ Class Core_Model_Resource_Abstract
         // ($product->setId($id));
     }
 
-    public function delete(Catalog_Model_Product $product)
+    public function delete(Core_Model_Abstract $product)
     {
 
-         echo "<pre>";
+         //echo "<pre>";
         //print_r($data);
         // var_dump($getclassName());
         // die;

@@ -95,10 +95,13 @@ return $this->_data;
         $this->_data = $data;
         return $this;
     }
+
     public function addData($key, $value)
     {
-        
+        $this->_data[$key] = $value;
+        return $this;
     }
+
     public function removeData($key = null)
     {
         
@@ -107,19 +110,19 @@ return $this->_data;
     {
        
         //print_r($this->getdata());
-        // $this->_beforeSave();
+        $this->_beforeSave();
         $this->getResource()->save($this);
       // var_dump($this); 
-        // $this->_afterSave();
+        $this->_afterSave();
         return $this;
     }
-    public function _beforeSave()
+    protected function _beforeSave()
     {
-
+        return $this;
     }
-    public function _afterSave()
+    protected function _afterSave()
     {
-
+        return $this;
     }
     public function load($id, $column=null)
     {
