@@ -103,9 +103,14 @@ return $this->_data;
     }
 
     public function removeData($key = null)
-    {
-        
-    }
+        {
+            if ($key === null) {
+                $this->_data = array(); // Remove all data
+            } else {
+                unset($this->_data[$key]); // Remove specific key-value pair
+            }
+            return $this;
+        }
     public function save()
     {
        

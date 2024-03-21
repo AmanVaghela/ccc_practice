@@ -1,0 +1,18 @@
+<table class="centered-table">
+    <tr>
+        <th>Order Id </th>
+        <th>Order Number</th>
+        <th>Order Details</th>
+        <th>Grand Total</th>
+        <th>Status</th>
+    </tr>
+    <?php $orders=$this->getOrderItem();
+        // print_r($orders->getData());
+    foreach($orders->getData() as $_order)
+    {
+        ?>
+        <tr>
+            
+        </tr>
+    <?php } ?>
+</table>

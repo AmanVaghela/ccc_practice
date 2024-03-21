@@ -69,6 +69,10 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
             $salesQuotePayment->setData($payment);
             $salesQuotePayment->save();
 
+            Mage::getSingleton('sales/quote')->convert();
+            Mage::getSingleton('core/session')->remove('quote_id');
+
+
             
             // $sales=Mage::getModel('sales/quote');
             // $sales->addData('payment_id',);

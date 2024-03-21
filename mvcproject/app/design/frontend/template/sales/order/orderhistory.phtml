@@ -1,0 +1,37 @@
+
+<?php $orders = $this->getOrder();
+// $product = $this->getProduct();
+?>
+<div class="order-details">
+    <?php foreach ($orders->getData() as $order): 
+        $item = Mage::getModel('sales/order_item')->getCollection()->addFieldToFilter('order_id',$order->getId());        ?>
+        <p class="order-number">Order Number:
+            <?php echo $order->getOrderNumber(); ?>
+        </p>
+        <div class="order-items">
+
+            <?php foreach ($item->getData() as $_item):
+                $productId = $_item->getProductId();
+                $productModel = Mage::getModel('catalog/product')->load($productId); ?>
+                <div class="order-item">
+
+                    <div class="product-details">
+                        <img class="product-image"
+                            src="<?php echo Mage::getBaseUrl() . "media/product/" . $productModel->getImageLink(); ?>"
+                            alt="dd" />
+                        <p class="product-name">Name:
+                            <?php echo $productModel->getName(); ?>
+                        </p>
+                        <p class="product-qty">Qty:
+                            <?php echo $_item->getQty(); ?>
+                        </p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <p class="total-cost">Total :
+            <?php echo $order->getGrandTotal(); ?>
+        </p>
+    <?php endforeach; ?>
+
+</div>
