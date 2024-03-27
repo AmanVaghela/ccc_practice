@@ -1,0 +1,32 @@
+<?php
+// echo"<pre>";
+$data = $this->getDropdown();
+$data2 = $this->getDropdownChild($this->data);
+// print_r($data); die;
+?>
+<form action="<?php echo $this->getUrl('dropdown/index/save')?>"  method="post">
+   
+    <select  name="dropdown" id="requirements" >
+     <?php foreach($data->getData() as $data)
+     { ?>
+     <option value="<?php echo $data->getId() ?>"><?php echo $data->getName() ?>
+</option>
+<?php } ?>
+  </select><br>
+  <input type="submit" value="submit">
+  <br> 
+  </form>
+ <hr></hr>
+  
+ <select  name="dropdown[name]" id="requirements">
+     <?php foreach($data2->getData() as $data)
+{ ?>
+<option value="<?php echo $data->getName() ?>"><?php echo $data->getName() ?>
+</option>
+<?php } ?>
+  </select>
+  <br>
+    <input type="submit" value="submit">
+</form>
+
+
